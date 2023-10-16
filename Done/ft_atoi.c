@@ -1,6 +1,6 @@
 #include "libft.h"
 
-int ft_atoi(char *str)
+int ft_atoi(const char *nptr)
 {
     int i;
     int neg;
@@ -9,17 +9,19 @@ int ft_atoi(char *str)
     i = 0;
     neg = 0;
     nb = 0;
-    while(str[i] == '-' || str[i] == '+')
-    {
-        if(str[i] == '-')
-            neg++;
-        i++;
-        if(i == 2)
-            return 0;
+	while (nptr[i] <= 32)
+		i++;
+	if(nptr[i] == '-' || nptr[i] == '+')
+	{
+		if(nptr[i] == '-')
+			neg++;
+		i++;
+		if(i == 2)
+			return 0;
     }
-    while(str[i] >= '0' && str[i] <= '9')
+    while(nptr[i] >= '0' && nptr[i] <= '9')
     {
-        nb = (nb * 10) + (str[i] - 48);
+        nb = (nb * 10) + (nptr[i] - 48);
         i++;
     }
     if (neg == 1)
