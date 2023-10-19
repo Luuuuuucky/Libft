@@ -1,42 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pameyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 19:49:42 by pameyer           #+#    #+#             */
-/*   Updated: 2023/10/19 19:50:43 by pameyer          ###   ########.fr       */
+/*   Created: 2023/10/19 18:08:20 by pameyer           #+#    #+#             */
+/*   Updated: 2023/10/19 19:40:17 by pameyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *nptr)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int	i;
-	int	neg;
-	int	nb;
+	char			*buf;
+	unsigned int	i;
 
+	buf = (char *) ft_calloc(ft_strlen(s) + 1, sizeof(char));
+	if (!buf)
+		return (NULL);
 	i = 0;
-	neg = 0;
-	nb = 0;
-	while (nptr[i] == 32 || (nptr[i] >= 9 && nptr[i] <= 13))
-		i++;
-	if (nptr[i] == '-' || nptr[i] == '+')
+	while (s[i])
 	{
-		if (nptr[i] == '-')
-			neg++;
-		i++;
-		if (i == 2)
-			return (0);
-	}
-	while (nptr[i] >= '0' && nptr[i] <= '9')
-	{
-		nb = (nb * 10) + (nptr[i] - 48);
+		buf[i] = (*f)(i, s[i]);
 		i++;
 	}
-	if (neg == 1)
-		nb *= -1;
-	return (nb);
+	buf[i] = 0;
+	return (buf);
 }

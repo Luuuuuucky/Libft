@@ -1,42 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pameyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 19:49:42 by pameyer           #+#    #+#             */
-/*   Updated: 2023/10/19 19:50:43 by pameyer          ###   ########.fr       */
+/*   Created: 2023/10/17 19:20:55 by pameyer           #+#    #+#             */
+/*   Updated: 2023/10/19 20:12:39 by pameyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *nptr)
+void	ft_putnbr_fd(int n, int fd)
 {
-	int	i;
-	int	neg;
-	int	nb;
-
-	i = 0;
-	neg = 0;
-	nb = 0;
-	while (nptr[i] == 32 || (nptr[i] >= 9 && nptr[i] <= 13))
-		i++;
-	if (nptr[i] == '-' || nptr[i] == '+')
+	if (n == -2147483648)
 	{
-		if (nptr[i] == '-')
-			neg++;
-		i++;
-		if (i == 2)
-			return (0);
+		write(fd, "-2147483648", 11);
+		return ;
 	}
-	while (nptr[i] >= '0' && nptr[i] <= '9')
+	if (n < 0)
 	{
-		nb = (nb * 10) + (nptr[i] - 48);
-		i++;
+		ft_putchar_fd('-', fd);
+		n = -n;
 	}
-	if (neg == 1)
-		nb *= -1;
-	return (nb);
+	if (n > 9)
+	{
+		ft_putnbr_fd(n / 10, fd);
+		ft_putnbr_fd(n % 10, fd);
+	}
+	else
+		ft_putchar_fd(n + 48, fd);
 }

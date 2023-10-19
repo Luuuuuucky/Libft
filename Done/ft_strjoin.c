@@ -1,42 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pameyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 19:49:42 by pameyer           #+#    #+#             */
-/*   Updated: 2023/10/19 19:50:43 by pameyer          ###   ########.fr       */
+/*   Created: 2023/10/18 16:57:17 by pameyer           #+#    #+#             */
+/*   Updated: 2023/10/19 20:19:35 by pameyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *nptr)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int	i;
-	int	neg;
-	int	nb;
+	char	*buffer;
 
-	i = 0;
-	neg = 0;
-	nb = 0;
-	while (nptr[i] == 32 || (nptr[i] >= 9 && nptr[i] <= 13))
-		i++;
-	if (nptr[i] == '-' || nptr[i] == '+')
-	{
-		if (nptr[i] == '-')
-			neg++;
-		i++;
-		if (i == 2)
-			return (0);
-	}
-	while (nptr[i] >= '0' && nptr[i] <= '9')
-	{
-		nb = (nb * 10) + (nptr[i] - 48);
-		i++;
-	}
-	if (neg == 1)
-		nb *= -1;
-	return (nb);
+	buffer = ft_calloc(ft_strlen(s1) + ft_strlen(s2) + 1, sizeof(char));
+	if (buffer == NULL)
+		return (NULL);
+	ft_strlcpy(buffer, s1, ft_strlen(s1) + 1);
+	ft_strlcat(buffer, s2, ft_strlen(s1) + ft_strlen(s2) + 1);
+	return (buffer);
 }

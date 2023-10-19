@@ -1,1 +1,3 @@
-strnstr
+ft_itoa
+ft_strmapi
+ft_striteri
