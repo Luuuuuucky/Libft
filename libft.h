@@ -6,7 +6,7 @@
 /*   By: pameyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 20:23:29 by pameyer           #+#    #+#             */
-/*   Updated: 2023/10/19 20:32:26 by pameyer          ###   ########.fr       */
+/*   Updated: 2023/10/20 14:33:55 by pameyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,23 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <string.h>
 
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}	t_list;
+
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+void	ft_lstiter(t_list *lst, void (*f)(void *));
+void	ft_lstclear(t_list **lst, void (*del)(void*));
+void	ft_lstdelone(t_list *lst, void (*del)(void*));
+void	ft_lstadd_back(t_list **alst, t_list *new);
+t_list	*ft_lstlast(t_list *lst);
+int		ft_lstsize(t_list *lst);
+void	ft_lstadd_front(t_list **alst, t_list *new);
+t_list	*ft_lstnew(void *content);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	*ft_strrchr(const char *s, int c);
 char	*ft_strchr(const char *s, int c);
