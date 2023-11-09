@@ -12,51 +12,47 @@
 
 #include "libft.h"
 
-ssize_t	count_digits(int n)
+static size_t	ft_len(int n)
 {
-	ssize_t	cnt;
+	size_t	i;
 
-	cnt = 0;
+	i = 0;
 	if (n == 0)
 		return (1);
 	if (n < 0)
-	{
-		n *= -1;
-		cnt++;
-	}
+		i++;
 	while (n != 0)
 	{
-		cnt++;
-		n /= 10;
+		n = n / 10;
+		i++;
 	}
-	return (cnt);
+	return (i);
 }
 
 char	*ft_itoa(int n)
 {
-	char	*buf;
-	ssize_t	buf_len;
+	unsigned int	nbr;
+	long int		len;
+	char			*alpha;
 
-	buf_len = count_digits(n);
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
-	if (n == 0)
-		return (ft_strdup("0"));
-	buf = (char *) ft_calloc(count_digits(n) + 1, 1);
-	if (!buf)
-		return (NULL);
+	len = ft_len(n);
 	if (n < 0)
+		nbr = -n;
+	else
+		nbr = n;
+	alpha = malloc(sizeof(char) * len + 1);
+	if (!alpha)
+		return (NULL);
+	if (n == 0)
+		alpha[0] = '0';
+	alpha[len] = '\0';
+	len--;
+	while (nbr)
 	{
-		buf[0] = '-';
-		n *= -1;
+		alpha[len--] = (nbr % 10) + '0';
+		nbr /= 10;
 	}
-	while (n > 0)
-	{
-		if (buf[buf_len - 1] == '-')
-			break ;
-		buf[buf_len - 1] = n % 10 + 48;
-		n /= 10;
-		buf_len--;
-	}
-	return (buf);
+	if (n < 0)
+		alpha[0] = '-';
+	return (alpha);
 }
