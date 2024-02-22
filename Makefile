@@ -63,6 +63,7 @@ SRCS        :=      ft_atoi.c \
 			  ft_printf2.c \
 			  ft_printf.h \
 			  ft_printf_utils1.c \
+			  ft_isonly.c \
                           
 OBJS        := $(SRCS:.c=.o)
 

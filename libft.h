@@ -6,7 +6,7 @@
 /*   By: pameyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 20:23:29 by pameyer           #+#    #+#             */
-/*   Updated: 2023/10/20 14:33:55 by pameyer          ###   ########.fr       */
+/*   Updated: 2024/02/22 19:57:21 by pameyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ int		ft_isascii(int c);
 int		ft_isprint(int c);
 int		ft_atoi(const char *nbtr);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int		ft_isonly(char *s, char *charset);
 
 #endif
