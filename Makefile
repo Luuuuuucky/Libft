@@ -57,6 +57,12 @@ SRCS        :=      ft_atoi.c \
 			  ft_lstclear.c \
 			  ft_lstiter.c \
 			  ft_lstmap.c \
+			  ft_printf1.c \
+			  ft_printf.c \
+			  ft_printf_utils0.c \
+			  ft_printf2.c \
+			  ft_printf.h \
+			  ft_printf_utils1.c \
                           
 OBJS        := $(SRCS:.c=.o)
 
